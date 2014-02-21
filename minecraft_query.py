@@ -8,8 +8,8 @@ class MincraftQuery(object):
     def __getData(self):
         from socket import socket, AF_INET, SOCK_STREAM
         s = socket(AF_INET, SOCK_STREAM)
-        s.connect((self.host, self.port))
         s.settimeout(self.timeout)
+        s.connect((self.host, self.port))
         s.sendall(b'\xfe\x01')
         data = s.recv(1024)
         s.close()
