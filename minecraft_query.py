@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-class MincraftQuery(object):
+class MinecraftQuery(object):
     def __init__(self, host = "localhost", port = 25565, timeout = 5):
         self.host = host
         self.port = port
