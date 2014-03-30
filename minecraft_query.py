@@ -69,6 +69,7 @@ class MinecraftQuery(object):
             status["MOTD"] = sub("�\w", "", sub("\x00", "", data[2]))
             status["OnlinePlayers"] = sub("\x00", "", data[3])
             status["MaxPlayers"] = sub("\x00", "", data[4])
+            return status
         except Exception as e:
             status["Error"] = repr(e)
             return status
@@ -101,6 +102,3 @@ def decode_varint_stream(stream):
             yield value
             value = 0
             base = 1
-            
-if __name__ == "__main__":
-    print(MinecraftQuery("www.blazelandhk.com", 25565).getResultNew())
