@@ -51,9 +51,9 @@ class MinecraftQuery(object):
             from json import loads
             jsonData = loads(self.__getDataNew())
             status["Version"] = findall("(\d.\d.\d)", jsonData["version"]["name"])[0]
-            status["MOTD"] = sub("ยง\w", "", jsonData["description"])
-            status["OnlinePlayers"] = jsonData["players"]["online"]
-            status["MaxPlayers"] = jsonData["players"]["max"]
+            status["MOTD"] = sub("§\w", "", jsonData["description"])
+            status["OnlinePlayers"] = int(jsonData["players"]["online"])
+            status["MaxPlayers"] = int(jsonData["players"]["max"])
             status["ServerIcon"]= jsonData["favicon"]
         except Exception as e:
             status["Error"] = repr(e)
@@ -67,8 +67,8 @@ class MinecraftQuery(object):
             data = split("\x00\x00", data)
             status["Version"] = sub("\x00", "", data[1])
             status["MOTD"] = sub("�\w", "", sub("\x00", "", data[2]))
-            status["OnlinePlayers"] = sub("\x00", "", data[3])
-            status["MaxPlayers"] = sub("\x00", "", data[4])
+            status["OnlinePlayers"] = int(sub("\x00", "", data[3]))
+            status["MaxPlayers"] = int(sub("\x00", "", data[4]))
             return status
         except Exception as e:
             status["Error"] = repr(e)
