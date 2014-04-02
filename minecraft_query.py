@@ -54,7 +54,7 @@ class MinecraftQuery(object):
             status["MOTD"] = sub("§\w", "", jsonData["description"])
             status["OnlinePlayers"] = int(jsonData["players"]["online"])
             status["MaxPlayers"] = int(jsonData["players"]["max"])
-            status["ServerIcon"]= jsonData["favicon"]
+            status["ServerIcon"]= sub("\n", "", jsonData["favicon"])
         except Exception as e:
             status["Error"] = repr(e)
         finally:
